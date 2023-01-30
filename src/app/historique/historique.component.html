@@ -1,23 +1,36 @@
-<div *ngIf="historique$ | async as histo">
-  <h1 class="headline-1">Historique de reparation du vehicule {{ idvoiture }}</h1>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>etat</th>
-      <th>Date debut reparation</th>
-      <th>Date fin de reparation</th>
-      <th>Date de sortie</th>
-      <th>Date de depot de voiture</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let data of histo">
-      <td>{{ data._id }}</td>
-      <td>{{ data.etat }}</td>
-      <td>{{ data.date_debut_reparation }}</td>
-      <td>{{ data.date_fin_reparation }}</td>
-      <td>{{ data.date_fin_reparation }}</td>
-      <td>{{ data.date_depot }}</td>
-      <td><button mat-raised-button color="primary" [routerLink]="['/details',data._id]">Details</button></td>
-    </tr>
-  </table>
+<div class="contenu">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="historique$ | async as histo">
+    <h1 class="headline-1">Historique de reparation du vehicule {{ idvoiture }}</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>etat</th>
+        <th>Date debut reparation</th>
+        <th>Date fin de reparation</th>
+        <th>Date de sortie</th>
+        <th>Date de depot de voiture</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let data of histo">
+        <td>{{ data._id }}</td>
+        <td [ngSwitch]="data.etat">
+          <p *ngSwitchCase=0>Deposer</p>
+          <p *ngSwitchCase=1>En atelier</p>
+          <p *ngSwitchCase=2>Reparer</p>
+          <p *ngSwitchCase=3>Pret a payer</p>
+          <p *ngSwitchCase=4>Payer</p>
+          <p *ngSwitchCase=5>Pret a sortir</p>
+          <p *ngSwitchCase=6>Sorti</p>
+          <p *ngSwitchCase=7>Annuler</p>
+          <p *ngSwitchDefault>Non reconnu</p>
+        </td>
+        <td>{{ data.date_debut_reparation | date:'longDate'}}</td>
+        <td>{{ data.date_fin_reparation | date:'longDate'}}</td>
+        <td>{{ data.date_fin_reparation | date:'longDate'}}</td>
+        <td>{{ data.date_depot | date:'longDate'}}</td>
+        <td><button mat-raised-button color="primary" [routerLink]="['/details',data._id]">Details</button></td>
+      </tr>
+    </table>
+  </div>
 </div>

@@ -1,28 +1,39 @@
-<mat-spinner *ngIf="isLoading"></mat-spinner>
-<div *ngIf="detailsrepa$ | async as car">
-  <h1 class="headline-1">Details Reparations</h1>
-  <div *ngIf="car.data.reparation as rep">
-    <p>ID : {{ rep._id }}</p>
-    <p>Etat : {{ rep.etat }}</p>
-    <p>Voiture matricule : {{ rep.voiture.matricule }}</p>
-    <p>Proprietaire : {{ rep.voiture.personne }}</p>
-    <p>Date de depot : {{ rep.date_depot }}</p>
-    <p>Date de debut de reparation : {{ rep.date_debut_reparation }}</p>
+<div class="contenu">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="detailsrepa$ | async as car">
+    <h1 class="headline-1">Details Reparations</h1>
+    <div *ngIf="car.data.reparation as rep">
+      <p>ID : {{ rep._id }}</p>
+      <div [ngSwitch]="rep.etat">
+        <p *ngSwitchCase=0>Deposer</p>
+        <p *ngSwitchCase=1>En atelier</p>
+        <p *ngSwitchCase=2>Reparer</p>
+        <p *ngSwitchCase=3>Pret a payer</p>
+        <p *ngSwitchCase=4>Payer</p>
+        <p *ngSwitchCase=5>Pret a sortir</p>
+        <p *ngSwitchCase=6>Sorti</p>
+        <p *ngSwitchCase=7>Annuler</p>
+        <p *ngSwitchDefault>Non reconnu</p>
+      </div>
+      <p>Voiture matricule : <strong>{{ rep.voiture.matricule }}</strong></p>
+      <p>Date de depot : {{ rep.date_depot | date:'longDate'}}</p>
+      <p>Date de debut de reparation : {{ rep.date_debut_reparation | date:'longDate'}}</p>
 
+    </div>
+    <table>
+      <tr>
+        <th>Libelle</th>
+        <th>Montant</th>
+        <th>Avancement</th>
+
+      </tr>
+      <tr *ngFor="let details of car.data.detailsreparations">
+        <td>{{ details.type_reparation.libelle }}</td>
+        <td>{{ details.type_reparation.montant | currency:'AR'}}</td>
+        <td>{{ details.avancement }} %</td>
+
+      </tr>
+
+    </table>
   </div>
-  <table>
-    <tr>
-      <th>Libelle</th>
-      <th>Montant</th>
-      <th>Avancement</th>
-
-    </tr>
-    <tr *ngFor="let details of car.data.detailsreparations" >
-      <td>{{ details.type_reparation.libelle }}</td>
-      <td>{{ details.type_reparation.montant }}</td>
-      <td>{{ details.avancement }}</td>
-
-    </tr>
-
-  </table>
 </div>

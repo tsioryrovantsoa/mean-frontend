@@ -30,3 +30,8 @@ mat-spinner{
   background-color: green;
   color:white;
 }
+
+.contenu{
+  margin: 20px 20px;
+  text-align: center;
+}

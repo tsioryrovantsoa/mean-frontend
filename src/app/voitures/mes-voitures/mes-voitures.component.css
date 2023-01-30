@@ -18,5 +18,15 @@ tr:hover {background-color: #e9e9e9;}
 .creer{
   text-align: center;
   background-color: rgb(176, 255, 176);
-  color:white;
+  color:black;
+}
+
+.contenu{
+  margin: 20px 20px;
+  text-align: center;
+}
+
+
+mat-spinner{
+  margin: auto;
 }
