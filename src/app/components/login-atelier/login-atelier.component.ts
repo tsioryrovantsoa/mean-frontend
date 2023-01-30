@@ -30,7 +30,7 @@ export class LoginAtelierComponent {
     ).subscribe(
       res=>{
         localStorage.setItem(this.authenticationService.getTokenKey(), res.token);
-        this.router.navigate(['/atelier']);
+        this.router.navigate(['/atelier/kanboard']);
       }, 
       err => {
         this.message = err.error.message
