@@ -34,6 +34,9 @@
 
       </tr>
 
-    </table>
+    </table><br>
+    <h3 class="headline-1"> Total : <strong> {{car.data.total | currency:'AR' }}</strong></h3>
   </div>
+  <br>
+  <button mat-raised-button color="warn" [routerLink]="['/mesvoitures']">Retour</button>
 </div>

@@ -17,14 +17,16 @@ import { MesVoituresComponent } from './voitures/mes-voitures/mes-voitures.compo
 import { KanboardComponent } from './components/kanboard/kanboard.component';
 import { HistoComponent } from './historique/historique.component';
 import { DetailsReparComponent } from './reparations/details-reparations/details-reparations.component';
+import { DetailReparationComponent } from './components/detail-reparation/detail-reparation.component';
 
 
 
 const routes: Routes = [
   { path : 'client', component: TemplateComponent, canActivate: [ClientGuard] },
-  { path : 'atelier', component: TemplateAtelierComponent, 
+  { path : 'atelier', component: TemplateAtelierComponent,
     children : [
       { path : 'kanboard', component : KanboardComponent },
+      { path : 'detail-reparation/:idreparation',component : DetailReparationComponent }
     ]
   },
   {
@@ -45,7 +47,7 @@ const routes: Routes = [
   { path : 'login', component : LoginComponent },
   { path : 'login-atelier', component : LoginAtelierComponent },
   { path : 'login-financier', component : LoginFinancierComponent },
-  
+
 ];
 
 @NgModule({
