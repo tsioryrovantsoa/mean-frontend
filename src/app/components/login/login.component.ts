@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   public message : string = "";
   public loading : boolean = false;
+  valeurdefault:any
 
   constructor(private authenticationService: AuthentificationService,private router : Router) {}
 
@@ -21,6 +22,14 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
+    this.loginForm.setValue({
+      username: "tsioryrovantsoa@gmail.com",
+      password: "12345"
+    });
+    this.valeurdefault = {
+      email : "tsioryrovantsoa@gmail.com",
+      mdp : "12345"
+    }
   }
 
   public onSubmit() {
