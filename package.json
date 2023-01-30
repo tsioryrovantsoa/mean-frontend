@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node app.js",
-    "build": "ng build && node app.js",
+    "start": "ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "ng build && nodemon ./backend/server.js"
+    "dev": "ng build"
   },
   "private": true,
   "dependencies": {
